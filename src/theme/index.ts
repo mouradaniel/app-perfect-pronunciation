@@ -9,8 +9,8 @@ export default {
     GRAY_200: '#747474'
   },
   FONT_FAMILY: {
-    REGULAR: 'Ubuntu_400Regular',
-    BOLD: 'Ubuntu_700Bold'
+    REGULAR: 'Ubuntu-Regular',
+    BOLD: 'Ubuntu-Bold'
   },
   FONT_SIZE: {
     SM: 14,
