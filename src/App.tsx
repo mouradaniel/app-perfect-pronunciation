@@ -2,12 +2,12 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './theme';
 
-import Home from './screens/Home';
+import {Welcome} from './screens/Welcome';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Welcome />
     </ThemeProvider>
   )
 }
