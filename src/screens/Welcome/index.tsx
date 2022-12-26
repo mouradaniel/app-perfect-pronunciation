@@ -18,7 +18,7 @@ export function Welcome() {
 
   return (
     <Container>
-      <Header/>
+      <Header showBackButton/>
 
       <Title>Seja bem-vindo(a) ao Perfect Pronunciation!</Title>
 
