@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 
-import { Header } from '../../components/Header';
+import { Header } from '@components/Header';
 
 import {
   Container,

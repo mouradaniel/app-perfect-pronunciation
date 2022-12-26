@@ -7,7 +7,7 @@ import {
   BackIcon
 } from './styles';
 
-import logoImage from '../../../assets/logo.png';
+import logoImage from '@assets/logo.png';
 
 type Props = {
   showBackButton?: boolean; 

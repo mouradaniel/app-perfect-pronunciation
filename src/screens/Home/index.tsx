@@ -12,7 +12,7 @@ import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Header } from '../../components/Header';
+import { Header } from '@components/Header';
 
 export function Home() {
   const [text, setText] = useState('');
@@ -135,12 +135,12 @@ export function Home() {
           {text.length ? (
             <Image
               style={styles.iconPlay}
-              source={require('../../../assets/botao-play-active.png')}
+              source={require('@assets/botao-play-active.png')}
             />
           ) : (
             <Image
               style={styles.iconPlay}
-              source={require('../../../assets/botao-play-deactive.png')}
+              source={require('@assets/botao-play-deactive.png')}
             />
           )}
         </TouchableOpacity>
@@ -161,7 +161,7 @@ export function Home() {
             <TouchableOpacity onPress={() => _onPressSpeech('en-GB')}>
               <Image
                 style={styles.iconPlay}
-                source={require('../../../assets/botao-play-active.png')}
+                source={require('@assets/botao-play-active.png')}
               />
             </TouchableOpacity>
           </View>
@@ -171,7 +171,7 @@ export function Home() {
             <TouchableOpacity onPress={() => _onPressSpeech('en-US')}>
               <Image
                 style={styles.iconPlay}
-                source={require('../../../assets/botao-play-active.png')}
+                source={require('@assets/botao-play-active.png')}
               />
             </TouchableOpacity>
           </View>
@@ -185,7 +185,7 @@ export function Home() {
                   onPress={e => _stopRecognizing(e)}>
                   <Image
                     style={styles.iconMicrophone}
-                    source={require('../../../assets/microphone-deactive.png')}
+                    source={require('@assets/microphone-deactive.png')}
                   />
                 </TouchableOpacity>
               </>
@@ -195,7 +195,7 @@ export function Home() {
                 onPress={e => _startRecognizing(e)}>
                 <Image
                   style={styles.iconMicrophone}
-                  source={require('../../../assets/microphone.png')}
+                  source={require('@assets/microphone.png')}
                 />
               </TouchableOpacity>
             )}
