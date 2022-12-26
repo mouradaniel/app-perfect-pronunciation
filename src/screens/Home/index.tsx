@@ -20,40 +20,25 @@ export function Home() {
   const [activeSearch, setActiveSearch] = useState(false);
   const [regognizedTerm, setRegognizedTerm] = useState('');
 
-  const [pitch, setPitch] = useState('');
-  const [error, setError] = useState('');
   const [started, setStarted] = useState('');
   const [results, setResults] = useState([]);
   const [partialResults, setPartialResults] = useState([]);
   const [end, setEnd] = useState('');
 
   useEffect(() => {
-    function onSpeechStart(e) {
-      setStarted('√');
-    }
     function onSpeechResults(e) {
       setResults(e.value);
       setActiveSearch(false);
       setRegognizedTerm(e.value[0]);
     }
+
     function onSpeechPartialResults(e) {
       setPartialResults(e.value);
     }
-    function onSpeechVolumeChanged(e) {
-      setPitch(e.value);
-    }
-    function onSpeechEnd(e) {
-      setPitch(e.value);
-    }
-    function onSpeechError(e) {
-      setPitch(e.value);
-    }
-    Voice.onSpeechStart = onSpeechStart;
-    Voice.onSpeechEnd = onSpeechEnd;
-    Voice.onSpeechError = onSpeechError;
+
     Voice.onSpeechResults = onSpeechResults;
     Voice.onSpeechPartialResults = onSpeechPartialResults;
-    Voice.onSpeechVolumeChanged = onSpeechVolumeChanged;
+
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
@@ -66,8 +51,6 @@ export function Home() {
   };
 
   async function _startRecognizing() {
-    setPitch('');
-    setError('');
     setStarted('');
     setResults([]);
     setPartialResults([]);
@@ -89,28 +72,6 @@ export function Home() {
     } catch (e) {
       console.error(e);
     }
-  }
-
-  async function _cancelRecognizing() {
-    try {
-      await Voice.cancel();
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  async function _destroyRecognizer() {
-    try {
-      await Voice.destroy();
-    } catch (e) {
-      console.error(e);
-    }
-    setPitch('');
-    setError('');
-    setStarted('');
-    setResults([]);
-    setPartialResults([]);
-    setEnd('');
   }
 
   return (
