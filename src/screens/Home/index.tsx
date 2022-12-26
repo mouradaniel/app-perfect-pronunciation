@@ -20,24 +20,13 @@ export function Home() {
   const [activeSearch, setActiveSearch] = useState(false);
   const [regognizedTerm, setRegognizedTerm] = useState('');
 
-  const [started, setStarted] = useState('');
-  const [results, setResults] = useState([]);
-  const [partialResults, setPartialResults] = useState([]);
-  const [end, setEnd] = useState('');
-
   useEffect(() => {
     function onSpeechResults(e) {
-      setResults(e.value);
       setActiveSearch(false);
       setRegognizedTerm(e.value[0]);
     }
 
-    function onSpeechPartialResults(e) {
-      setPartialResults(e.value);
-    }
-
     Voice.onSpeechResults = onSpeechResults;
-    Voice.onSpeechPartialResults = onSpeechPartialResults;
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -51,10 +40,6 @@ export function Home() {
   };
 
   async function _startRecognizing() {
-    setStarted('');
-    setResults([]);
-    setPartialResults([]);
-    setEnd('');
     setRegognizedTerm('');
 
     try {
