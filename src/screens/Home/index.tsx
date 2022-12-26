@@ -10,8 +10,11 @@ import {
 } from 'react-native';
 import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Home = () => {
+import { Header } from '../../components/Header';
+
+export function Home() {
   const [text, setText] = useState('');
   const [showAudios, setShowAudios] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
@@ -111,7 +114,9 @@ const Home = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Header showBackButton />
+      
       <Text style={styles.title}>Pronúncia Perfeita</Text>
       <Text style={styles.subtitle}>
         A sua mais nova ferramenta para melhorar a pronúncia.
@@ -130,12 +135,12 @@ const Home = () => {
           {text.length ? (
             <Image
               style={styles.iconPlay}
-              source={require('../../assets/botao-play-active.png')}
+              source={require('../../../assets/botao-play-active.png')}
             />
           ) : (
             <Image
               style={styles.iconPlay}
-              source={require('../../assets/botao-play-deactive.png')}
+              source={require('../../../assets/botao-play-deactive.png')}
             />
           )}
         </TouchableOpacity>
@@ -156,7 +161,7 @@ const Home = () => {
             <TouchableOpacity onPress={() => _onPressSpeech('en-GB')}>
               <Image
                 style={styles.iconPlay}
-                source={require('../../assets/botao-play-active.png')}
+                source={require('../../../assets/botao-play-active.png')}
               />
             </TouchableOpacity>
           </View>
@@ -166,7 +171,7 @@ const Home = () => {
             <TouchableOpacity onPress={() => _onPressSpeech('en-US')}>
               <Image
                 style={styles.iconPlay}
-                source={require('../../assets/botao-play-active.png')}
+                source={require('../../../assets/botao-play-active.png')}
               />
             </TouchableOpacity>
           </View>
@@ -180,7 +185,7 @@ const Home = () => {
                   onPress={e => _stopRecognizing(e)}>
                   <Image
                     style={styles.iconMicrophone}
-                    source={require('../../assets/microphone-deactive.png')}
+                    source={require('../../../assets/microphone-deactive.png')}
                   />
                 </TouchableOpacity>
               </>
@@ -190,7 +195,7 @@ const Home = () => {
                 onPress={e => _startRecognizing(e)}>
                 <Image
                   style={styles.iconMicrophone}
-                  source={require('../../assets/microphone.png')}
+                  source={require('../../../assets/microphone.png')}
                 />
               </TouchableOpacity>
             )}
@@ -232,7 +237,7 @@ const Home = () => {
       ) : (
         <View />
       )}
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -354,5 +359,3 @@ const styles = StyleSheet.create({
     color: '#5B618A',
   },
 });
-
-export default Home;
