@@ -12,6 +12,7 @@ export const Container = styled(TouchableOpacity) <Props>`
 
   min-height: 40px;
   max-height: 40px;
+  width: 100%;
 
   background-color: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.BLUE_700 : theme.COLORS.WHITE };
 
