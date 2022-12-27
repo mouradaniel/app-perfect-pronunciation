@@ -6,7 +6,8 @@ import {
   Container,
   Title,
   Button,
-  ButtonText
+  ButtonText,
+  Content
 } from './styles';
 
 export function Welcome() {
@@ -20,13 +21,15 @@ export function Welcome() {
     <Container>
       <Header />
 
-      <Title>Seja bem-vindo(a) ao Perfect Pronunciation!</Title>
+      <Content>
+        <Title>Seja bem-vindo(a) ao Perfect Pronunciation!</Title>
 
-      <Button
-        onPress={handleHome}
-      >
-        <ButtonText>Praticar</ButtonText>
-      </Button>
+        <Button
+          onPress={handleHome}
+        >
+          <ButtonText>Praticar</ButtonText>
+        </Button>
+      </Content>
     </Container>
   )
 }
