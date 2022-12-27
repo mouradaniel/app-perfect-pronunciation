@@ -1,12 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
+import { Button } from '@components/Button';
 
 import {
   Container,
   Title,
-  Button,
-  ButtonText,
   Content
 } from './styles';
 
@@ -24,11 +23,10 @@ export function Welcome() {
       <Content>
         <Title>Seja bem-vindo(a) ao Perfect Pronunciation!</Title>
 
-        <Button
-          onPress={handleHome}
-        >
-          <ButtonText>Praticar</ButtonText>
-        </Button>
+        <Button 
+          onPress={ handleHome }
+          title="Praticar"
+        />
       </Content>
     </Container>
   )
