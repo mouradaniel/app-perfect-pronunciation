@@ -5,6 +5,8 @@ import theme from './theme';
 
 import { Routes } from './routes';
 
+import { PreferencesProvider } from './contexts/PreferencesContext';
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -13,7 +15,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <PreferencesProvider>
+        <Routes />
+      </PreferencesProvider>
     </ThemeProvider>
   )
 }
