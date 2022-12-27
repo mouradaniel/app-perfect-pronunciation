@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  ScrollView,
   View,
   Text,
   TextInput,
@@ -10,9 +9,13 @@ import {
 } from 'react-native';
 import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Header } from '@components/Header';
+
+import { 
+  Container,
+  Content
+} from './styles'
 
 export function Home() {
   const [text, setText] = useState('');
@@ -60,130 +63,132 @@ export function Home() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Container>
       <Header showBackButton />
       
-      <Text style={styles.title}>Pronúncia Perfeita</Text>
-      <Text style={styles.subtitle}>
-        A sua mais nova ferramenta para melhorar a pronúncia.
-      </Text>
+      <Content>
+        <Text style={styles.title}>Pronúncia Perfeita</Text>
+        <Text style={styles.subtitle}>
+          A sua mais nova ferramenta para melhorar a pronúncia.
+        </Text>
 
-      <View style={styles.inputGroup}>
-        <TextInput
-          style={styles.input}
-          onChangeText={value => setText(value)}
-          placeholder="Digite aqui o que deseja praticar"
-          value={text}
-        />
-        <TouchableOpacity
-          style={styles.buttonPlay}
-          onPress={() => setShowAudios(true)}>
-          {text.length ? (
-            <Image
-              style={styles.iconPlay}
-              source={require('@assets/botao-play-active.png')}
-            />
-          ) : (
-            <Image
-              style={styles.iconPlay}
-              source={require('@assets/botao-play-deactive.png')}
-            />
-          )}
-        </TouchableOpacity>
-      </View>
-
-      {showAudios ? (
-        <>
-          <View style={styles.textContainer}>
-            <Text style={styles.typedText}>Você deseja aprender "{text}":</Text>
-            <TouchableOpacity style={styles.editContainer}>
-              <Text style={styles.editText}>Editar</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.infoAudios}>Ouça as seguintes leituras:</Text>
-
-          <View style={styles.audioContainer}>
-            <Text>Inglês Britânico</Text>
-            <TouchableOpacity onPress={() => _onPressSpeech('en-GB')}>
+        <View style={styles.inputGroup}>
+          <TextInput
+            style={styles.input}
+            onChangeText={value => setText(value)}
+            placeholder="Digite aqui o que deseja praticar"
+            value={text}
+          />
+          <TouchableOpacity
+            style={styles.buttonPlay}
+            onPress={() => setShowAudios(true)}>
+            {text.length ? (
               <Image
                 style={styles.iconPlay}
                 source={require('@assets/botao-play-active.png')}
               />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.audioContainer}>
-            <Text>Inglês Americano</Text>
-            <TouchableOpacity onPress={() => _onPressSpeech('en-US')}>
-              <Image
-                style={styles.iconPlay}
-                source={require('@assets/botao-play-active.png')}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.yourTurn}>
-            <Text style={styles.infoAudios}>Agora é com você:</Text>
-            {activeSearch ? (
-              <>
-                <TouchableOpacity
-                  style={styles.microphoneContainer}
-                  onPress={e => _stopRecognizing(e)}>
-                  <Image
-                    style={styles.iconMicrophone}
-                    source={require('@assets/microphone-deactive.png')}
-                  />
-                </TouchableOpacity>
-              </>
             ) : (
-              <TouchableOpacity
-                style={styles.microphoneContainer}
-                onPress={e => _startRecognizing(e)}>
+              <Image
+                style={styles.iconPlay}
+                source={require('@assets/botao-play-deactive.png')}
+              />
+            )}
+          </TouchableOpacity>
+        </View>
+
+        {showAudios ? (
+          <>
+            <View style={styles.textContainer}>
+              <Text style={styles.typedText}>Você deseja aprender "{text}":</Text>
+              <TouchableOpacity style={styles.editContainer}>
+                <Text style={styles.editText}>Editar</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.infoAudios}>Ouça as seguintes leituras:</Text>
+
+            <View style={styles.audioContainer}>
+              <Text>Inglês Britânico</Text>
+              <TouchableOpacity onPress={() => _onPressSpeech('en-GB')}>
                 <Image
-                  style={styles.iconMicrophone}
-                  source={require('@assets/microphone.png')}
+                  style={styles.iconPlay}
+                  source={require('@assets/botao-play-active.png')}
                 />
               </TouchableOpacity>
-            )}
+            </View>
 
-            {regognizedTerm ? (
-              <View>
-                {regognizedTerm === text.toLowerCase().trim() ? (
-                  <View style={styles.successContainer}>
-                    <Text style={styles.successText}>
-                      Legal! Você conseguiu reproduzir
-                      <Text style={styles.successStrongText}> "{text}" </Text>
-                      corretamente!
-                    </Text>
-                    <Text style={styles.successStrongText}>Parabéns!!!</Text>
-                  </View>
-                ) : (
-                  <View style={styles.errorContainer}>
-                    <Text style={styles.errorText}>
-                      Ops!!! Entendi
-                      <Text style={styles.errorStrongText}>
-                        {' '}
-                        "{regognizedTerm}"{' '}
+            <View style={styles.audioContainer}>
+              <Text>Inglês Americano</Text>
+              <TouchableOpacity onPress={() => _onPressSpeech('en-US')}>
+                <Image
+                  style={styles.iconPlay}
+                  source={require('@assets/botao-play-active.png')}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.yourTurn}>
+              <Text style={styles.infoAudios}>Agora é com você:</Text>
+              {activeSearch ? (
+                <>
+                  <TouchableOpacity
+                    style={styles.microphoneContainer}
+                    onPress={e => _stopRecognizing(e)}>
+                    <Image
+                      style={styles.iconMicrophone}
+                      source={require('@assets/microphone-deactive.png')}
+                    />
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <TouchableOpacity
+                  style={styles.microphoneContainer}
+                  onPress={e => _startRecognizing(e)}>
+                  <Image
+                    style={styles.iconMicrophone}
+                    source={require('@assets/microphone.png')}
+                  />
+                </TouchableOpacity>
+              )}
+
+              {regognizedTerm ? (
+                <View>
+                  {regognizedTerm === text.toLowerCase().trim() ? (
+                    <View style={styles.successContainer}>
+                      <Text style={styles.successText}>
+                        Legal! Você conseguiu reproduzir
+                        <Text style={styles.successStrongText}> "{text}" </Text>
+                        corretamente!
                       </Text>
-                    </Text>
-                    <Text style={styles.errorText}>
-                      Por favor, clique no microfone acima para tentar
-                      novamente.
-                    </Text>
-                  </View>
-                )}
-              </View>
-            ) : (
-              <View />
-            )}
-          </View>
+                      <Text style={styles.successStrongText}>Parabéns!!!</Text>
+                    </View>
+                  ) : (
+                    <View style={styles.errorContainer}>
+                      <Text style={styles.errorText}>
+                        Ops!!! Entendi
+                        <Text style={styles.errorStrongText}>
+                          {' '}
+                          "{regognizedTerm}"{' '}
+                        </Text>
+                      </Text>
+                      <Text style={styles.errorText}>
+                        Por favor, clique no microfone acima para tentar
+                        novamente.
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              ) : (
+                <View />
+              )}
+            </View>
 
-          <View style={styles.result} />
-        </>
-      ) : (
-        <View />
-      )}
-    </SafeAreaView>
+            <View style={styles.result} />
+          </>
+        ) : (
+          <View />
+        )}
+      </Content>
+    </Container>
   );
 };
 
