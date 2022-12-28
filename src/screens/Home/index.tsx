@@ -11,6 +11,8 @@ import Voice from '@react-native-community/voice';
 
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
+import { CardListen } from '@components/CardListen';
+import images from '../../utils/images';
 
 import { 
   Container,
@@ -107,25 +109,17 @@ export function Home() {
             </View>
             <Text style={styles.infoAudios}>Ouça as seguintes leituras:</Text>
 
-            <View style={styles.audioContainer}>
-              <Text>Inglês Britânico</Text>
-              <TouchableOpacity onPress={() => _onPressSpeech('en-GB')}>
-                <Image
-                  style={styles.iconPlay}
-                  source={require('@assets/botao-play-active.png')}
-                />
-              </TouchableOpacity>
-            </View>
+            <CardListen 
+              title="Inglês Britânico"
+              touchableAction={() => _onPressSpeech('en-GB')}
+              image={images.play}
+            />
 
-            <View style={styles.audioContainer}>
-              <Text>Inglês Americano</Text>
-              <TouchableOpacity onPress={() => _onPressSpeech('en-US')}>
-                <Image
-                  style={styles.iconPlay}
-                  source={require('@assets/botao-play-active.png')}
-                />
-              </TouchableOpacity>
-            </View>
+            <CardListen 
+              title="Inglês Americano"
+              touchableAction={() => _onPressSpeech('en-US')}
+              image={images.play}
+            />
 
             <View style={styles.yourTurn}>
               <Text style={styles.infoAudios}>Agora é com você:</Text>
@@ -221,16 +215,6 @@ const styles = StyleSheet.create({
   iconPlay: {
     width: 30,
     height: 30,
-  },
-  audioContainer: {
-    borderWidth: 1,
-    borderColor: '#747474',
-    borderRadius: 10,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: 16,
-    marginBottom: 8,
   },
   infoAudios: {
     fontFamily: 'Ubuntu Regular',
