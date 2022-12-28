@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
-  TextInput,
   Image,
   StyleSheet,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
 
 import { Header } from '@components/Header';
+import { Input } from '@components/Input';
 
 import { 
   Container,
@@ -73,12 +73,13 @@ export function Home() {
         </Text>
 
         <View style={styles.inputGroup}>
-          <TextInput
-            style={styles.input}
+
+          <Input
             onChangeText={value => setText(value)}
             placeholder="Digite aqui o que deseja praticar"
             value={text}
           />
+
           <TouchableOpacity
             style={styles.buttonPlay}
             onPress={() => setShowAudios(true)}>
@@ -211,15 +212,6 @@ const styles = StyleSheet.create({
   inputGroup: {
     position: 'relative',
     marginBottom: 32,
-  },
-  input: {
-    borderBottomColor: '#747474',
-    borderBottomWidth: 1,
-    paddingBottom: 8,
-    paddingLeft: 8,
-    fontFamily: 'Ubuntu Regular',
-    fontSize: 14,
-    color: '#747474',
   },
   buttonPlay: {
     position: 'absolute',
