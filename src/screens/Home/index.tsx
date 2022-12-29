@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import Tts from 'react-native-tts';
 import Voice from '@react-native-community/voice';
+
+import { PreferencesContext } from '@contexts/PreferencesContext';
 
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
@@ -24,6 +26,8 @@ export function Home() {
   const [showAudios, setShowAudios] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
   const [regognizedTerm, setRegognizedTerm] = useState('');
+
+  const { languageToLearn } = useContext(PreferencesContext);
 
   useEffect(() => {
     function onSpeechResults(e) {
@@ -48,7 +52,7 @@ export function Home() {
     setRegognizedTerm('');
 
     try {
-      await Voice.start('en-US');
+      await Voice.start(languageToLearn);
       setActiveSearch(true);
     } catch (e) {
       console.error(e);
