@@ -14,6 +14,7 @@ import { PreferencesContext } from '@contexts/PreferencesContext';
 import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 import { CardListen } from '@components/CardListen';
+import { IconButton } from '@components/IconButton';
 import images from '../../utils/images';
 
 import { 
@@ -79,28 +80,16 @@ export function Home() {
         </Text>
 
         <View style={styles.inputGroup}>
-
           <Input
             onChangeText={value => setText(value)}
             placeholder="Digite aqui o que deseja praticar"
             value={text}
           />
 
-          <TouchableOpacity
-            style={styles.buttonPlay}
-            onPress={() => setShowAudios(true)}>
-            {text.length ? (
-              <Image
-                style={styles.iconPlay}
-                source={require('@assets/botao-play-active.png')}
-              />
-            ) : (
-              <Image
-                style={styles.iconPlay}
-                source={require('@assets/botao-play-deactive.png')}
-              />
-            )}
-          </TouchableOpacity>
+          <IconButton
+            onPress={() => setShowAudios(true)}
+            image={text.length ? images.play : images.play_deactive}
+          />
         </View>
 
         {showAudios ? (
@@ -208,13 +197,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   inputGroup: {
-    position: 'relative',
-    marginBottom: 32,
-  },
-  buttonPlay: {
-    position: 'absolute',
-    right: 16,
-    bottom: 8,
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   iconPlay: {
     width: 30,
@@ -277,12 +262,8 @@ const styles = StyleSheet.create({
     color: '#D84138',
   },
   textContainer: {
-    position: 'relative',
   },
   editContainer: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
   },
   editText: {
     fontFamily: 'Ubuntu Medium',
