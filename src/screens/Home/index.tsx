@@ -116,27 +116,12 @@ export function Home() {
 
             <View style={styles.yourTurn}>
               <Text style={styles.infoAudios}>Agora é com você:</Text>
-              {activeSearch ? (
-                <>
-                  <TouchableOpacity
-                    style={styles.microphoneContainer}
-                    onPress={ stopRecognizing }>
-                    <Image
-                      style={styles.iconMicrophone}
-                      source={require('@assets/microphone-deactive.png')}
-                    />
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <TouchableOpacity
-                  style={styles.microphoneContainer}
-                  onPress={ startRecognizing }>
-                  <Image
-                    style={styles.iconMicrophone}
-                    source={require('@assets/microphone.png')}
-                  />
-                </TouchableOpacity>
-              )}
+
+              <IconButton
+                onPress={activeSearch ? stopRecognizing : startRecognizing}
+                image={activeSearch ? images.microphone_deactive : images.microphone}
+                size="LG"
+              />
 
               {regognizedTerm ? (
                 <View>
