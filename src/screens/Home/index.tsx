@@ -42,13 +42,13 @@ export function Home() {
     };
   }, []);
 
-  const _onPressSpeech = language => {
+  function listenPronunciation(language: string) {
     Tts.setDefaultLanguage(language);
     Tts.stop();
     Tts.speak(text);
   };
 
-  async function _startRecognizing() {
+  async function startRecognizing() {
     setRegognizedTerm('');
 
     try {
@@ -59,7 +59,7 @@ export function Home() {
     }
   }
 
-  async function _stopRecognizing() {
+  async function stopRecognizing() {
     try {
       await Voice.stop();
       setActiveSearch(false);
@@ -115,13 +115,13 @@ export function Home() {
 
             <CardListen 
               title="Inglês Britânico"
-              touchableAction={() => _onPressSpeech('en-GB')}
+              touchableAction={() => listenPronunciation('en-GB')}
               image={images.play}
             />
 
             <CardListen 
               title="Inglês Americano"
-              touchableAction={() => _onPressSpeech('en-US')}
+              touchableAction={() => listenPronunciation('en-US')}
               image={images.play}
             />
 
@@ -131,7 +131,7 @@ export function Home() {
                 <>
                   <TouchableOpacity
                     style={styles.microphoneContainer}
-                    onPress={e => _stopRecognizing(e)}>
+                    onPress={ stopRecognizing }>
                     <Image
                       style={styles.iconMicrophone}
                       source={require('@assets/microphone-deactive.png')}
@@ -141,7 +141,7 @@ export function Home() {
               ) : (
                 <TouchableOpacity
                   style={styles.microphoneContainer}
-                  onPress={e => _startRecognizing(e)}>
+                  onPress={ startRecognizing }>
                   <Image
                     style={styles.iconMicrophone}
                     source={require('@assets/microphone.png')}
